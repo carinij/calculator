@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/client/app.js":
-/*!***************************!*\
-  !*** ./src/client/app.js ***!
-  \***************************/
+/***/ "./src/client/app.jsx":
+/*!****************************!*\
+  !*** ./src/client/app.jsx ***!
+  \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -14,10 +14,127 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.css */ "./src/client/styles.css");
+/* harmony import */ var _components_resultView_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/resultView.jsx */ "./src/client/components/resultView.jsx");
+/* harmony import */ var _components_inputView_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/inputView.jsx */ "./src/client/components/inputView.jsx");
+
+
 
 
 function Calculator() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Hello, world!");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "app-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "content-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_resultView_jsx__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_inputView_jsx__WEBPACK_IMPORTED_MODULE_3__.default, null)));
+}
+
+/***/ }),
+
+/***/ "./src/client/components/calculatorButtons.jsx":
+/*!*****************************************************!*\
+  !*** ./src/client/components/calculatorButtons.jsx ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CalculatorButtons)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+function CalculatorButtons(props) {
+  var buttonDisplayArray = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', 'del', 'AC', '/', '*', '-', '+', '='];
+  var buttonNameArray = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero', 'dot', 'del', 'AC', 'division', 'multiplication', 'minus', 'plus', 'equals'];
+  var buttonInfoArray = [];
+
+  for (var i = 0; i < buttonDisplayArray.length; i++) {
+    buttonInfoArray.push({
+      displayName: buttonDisplayArray[i],
+      name: buttonNameArray[i]
+    });
+  }
+
+  var buttons = buttonInfoArray.map(function (item) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      key: item.name,
+      id: item.name
+    }, item.displayName);
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "calculator-buttons-container"
+  }, buttons);
+}
+
+/***/ }),
+
+/***/ "./src/client/components/inputView.jsx":
+/*!*********************************************!*\
+  !*** ./src/client/components/inputView.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ InputView)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _textInput_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./textInput.jsx */ "./src/client/components/textInput.jsx");
+/* harmony import */ var _calculatorButtons_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./calculatorButtons.jsx */ "./src/client/components/calculatorButtons.jsx");
+
+
+
+function InputView(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "input-view-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_textInput_jsx__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_calculatorButtons_jsx__WEBPACK_IMPORTED_MODULE_2__.default, null));
+}
+
+/***/ }),
+
+/***/ "./src/client/components/resultView.jsx":
+/*!**********************************************!*\
+  !*** ./src/client/components/resultView.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ResultView)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+function ResultView(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "result-view-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    id: "result-view",
+    name: "result-view",
+    placeholder: "Results will be displayed here.",
+    readOnly: true
+  }));
+}
+
+/***/ }),
+
+/***/ "./src/client/components/textInput.jsx":
+/*!*********************************************!*\
+  !*** ./src/client/components/textInput.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TextInput)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+function TextInput(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "text",
+    id: "text-input",
+    name: "text-input",
+    placeholder: "Enter formula."
+  }));
 }
 
 /***/ }),
@@ -41,7 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "h1 {\n  color: orange;\n}", "",{"version":3,"sources":["webpack://./src/client/styles.css"],"names":[],"mappings":"AAAA;EACE,aAAa;AACf","sourcesContent":["h1 {\n  color: orange;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "html body div span nav {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\nbody {\n  line-height: 1;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\nol, ul {\n  list-style: none;\n}\n\n.app-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  height: 98vh;\n  width: 98vw;\n}\n\n.content-container {\n  width: 360px;\n  height: 640px;\n  display: flex;\n  flex-direction: column;\n}\n\n.input-view-container {\n  margin-top: 20px;\n}\n\n#result-view {\n  resize: none;\n  height: 200px;\n  width: 340px;\n  text-align: right;\n}\n\n#text-input {\n  resize: none;\n  width: 338px;\n  text-align: right;\n}", "",{"version":3,"sources":["webpack://./src/client/styles.css"],"names":[],"mappings":"AAAA;EACE,SAAS;EACT,UAAU;EACV,SAAS;EACT,eAAe;EACf,aAAa;EACb,wBAAwB;AAC1B;;AAEA;EACE,cAAc;EACd,yCAAyC;AAC3C;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,sBAAsB;EACtB,YAAY;EACZ,WAAW;AACb;;AAEA;EACE,YAAY;EACZ,aAAa;EACb,aAAa;EACb,sBAAsB;AACxB;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,YAAY;EACZ,aAAa;EACb,YAAY;EACZ,iBAAiB;AACnB;;AAEA;EACE,YAAY;EACZ,YAAY;EACZ,iBAAiB;AACnB","sourcesContent":["html body div span nav {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\nbody {\n  line-height: 1;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\nol, ul {\n  list-style: none;\n}\n\n.app-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  height: 98vh;\n  width: 98vw;\n}\n\n.content-container {\n  width: 360px;\n  height: 640px;\n  display: flex;\n  flex-direction: column;\n}\n\n.input-view-container {\n  margin-top: 20px;\n}\n\n#result-view {\n  resize: none;\n  height: 200px;\n  width: 340px;\n  text-align: right;\n}\n\n#text-input {\n  resize: none;\n  width: 338px;\n  text-align: right;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -30387,11 +30504,11 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _app_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.js */ "./src/client/app.js");
+/* harmony import */ var _app_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.jsx */ "./src/client/app.jsx");
 
 
 
-react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_app_js__WEBPACK_IMPORTED_MODULE_2__.default, null), document.getElementById("root"));
+react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_app_jsx__WEBPACK_IMPORTED_MODULE_2__.default, null), document.getElementById("root"));
 })();
 
 /******/ })()
