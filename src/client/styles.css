@@ -1,4 +1,4 @@
-html body div span nav {
+html body div span input textarea nav {
   margin: 0;
   padding: 0;
   border: 0;
@@ -27,24 +27,72 @@ ol, ul {
 
 .content-container {
   width: 360px;
-  height: 640px;
+  height: auto;
   display: flex;
   flex-direction: column;
+  border: 1px solid black;
+  border-radius: 4px;
 }
 
-.input-view-container {
-  margin-top: 20px;
+.result-view-container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
 }
 
 #result-view {
   resize: none;
   height: 200px;
-  width: 340px;
+  width: 324px;
   text-align: right;
+}
+
+.btn-clear-history {
+  display: block;
+  margin-left: auto;
+  margin-top: -4px;
+  border-radius: 0px 0px 4px 4px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top: 0;
+}
+
+.input-view-container {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
 }
 
 #text-input {
   resize: none;
-  width: 338px;
+  width: 322px;
   text-align: right;
+  height: 40px;
+  font-size: 28px;
+}
+
+.calculator-buttons-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 8px;
+  row-gap: 8px;
+  margin-top: 8px;
+  width: 330px;
+}
+
+.calculator-button {
+  height: 42px;
+}
+
+#btn-equals {
+  grid-column-start: auto;
+  grid-column-end: span 2;
+}
+
+#btn-zero {
+  grid-column-start: auto;
+  grid-column-end: span 2;
 }

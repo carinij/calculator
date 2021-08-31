@@ -43,8 +43,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 function CalculatorButtons(props) {
-  var buttonDisplayArray = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', 'del', 'AC', '/', '*', '-', '+', '='];
-  var buttonNameArray = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero', 'dot', 'del', 'AC', 'division', 'multiplication', 'minus', 'plus', 'equals'];
+  var buttonDisplayArray = ['+', '-', '*', '/', '7', '8', '9', 'AC', '4', '5', '6', 'del', '1', '2', '3', '.', '0', '='];
+  var buttonNameArray = ['plus', 'minus', 'times', 'divide', 'seven', 'eight', 'nine', 'AC', 'four', 'five', 'six', 'del', 'one', 'two', 'three', 'dot', 'zero', 'equals'];
   var buttonInfoArray = [];
 
   for (var i = 0; i < buttonDisplayArray.length; i++) {
@@ -56,8 +56,9 @@ function CalculatorButtons(props) {
 
   var buttons = buttonInfoArray.map(function (item) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      key: item.name,
-      id: item.name
+      key: "btn-" + item.name,
+      id: "btn-" + item.name,
+      className: "calculator-button"
     }, item.displayName);
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -109,9 +110,11 @@ function ResultView(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
     id: "result-view",
     name: "result-view",
-    placeholder: "Results will be displayed here.",
+    placeholder: "Results will be displayed here",
     readOnly: true
-  }));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "btn-clear-history"
+  }, "Clear History"));
 }
 
 /***/ }),
@@ -133,7 +136,7 @@ function TextInput(props) {
     type: "text",
     id: "text-input",
     name: "text-input",
-    placeholder: "Enter formula."
+    placeholder: "Enter formula"
   }));
 }
 
@@ -158,7 +161,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "html body div span nav {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\nbody {\n  line-height: 1;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\nol, ul {\n  list-style: none;\n}\n\n.app-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  height: 98vh;\n  width: 98vw;\n}\n\n.content-container {\n  width: 360px;\n  height: 640px;\n  display: flex;\n  flex-direction: column;\n}\n\n.input-view-container {\n  margin-top: 20px;\n}\n\n#result-view {\n  resize: none;\n  height: 200px;\n  width: 340px;\n  text-align: right;\n}\n\n#text-input {\n  resize: none;\n  width: 338px;\n  text-align: right;\n}", "",{"version":3,"sources":["webpack://./src/client/styles.css"],"names":[],"mappings":"AAAA;EACE,SAAS;EACT,UAAU;EACV,SAAS;EACT,eAAe;EACf,aAAa;EACb,wBAAwB;AAC1B;;AAEA;EACE,cAAc;EACd,yCAAyC;AAC3C;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,sBAAsB;EACtB,YAAY;EACZ,WAAW;AACb;;AAEA;EACE,YAAY;EACZ,aAAa;EACb,aAAa;EACb,sBAAsB;AACxB;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,YAAY;EACZ,aAAa;EACb,YAAY;EACZ,iBAAiB;AACnB;;AAEA;EACE,YAAY;EACZ,YAAY;EACZ,iBAAiB;AACnB","sourcesContent":["html body div span nav {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\nbody {\n  line-height: 1;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\nol, ul {\n  list-style: none;\n}\n\n.app-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  height: 98vh;\n  width: 98vw;\n}\n\n.content-container {\n  width: 360px;\n  height: 640px;\n  display: flex;\n  flex-direction: column;\n}\n\n.input-view-container {\n  margin-top: 20px;\n}\n\n#result-view {\n  resize: none;\n  height: 200px;\n  width: 340px;\n  text-align: right;\n}\n\n#text-input {\n  resize: none;\n  width: 338px;\n  text-align: right;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "html body div span input textarea nav {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\nbody {\n  line-height: 1;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\nol, ul {\n  list-style: none;\n}\n\n.app-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  height: 98vh;\n  width: 98vw;\n}\n\n.content-container {\n  width: 360px;\n  height: auto;\n  display: flex;\n  flex-direction: column;\n  border: 1px solid black;\n  border-radius: 4px;\n}\n\n.result-view-container {\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 15px;\n}\n\n#result-view {\n  resize: none;\n  height: 200px;\n  width: 324px;\n  text-align: right;\n}\n\n.btn-clear-history {\n  display: block;\n  margin-left: auto;\n  margin-top: -4px;\n  border-radius: 0px 0px 4px 4px;\n  border-left: 1px solid black;\n  border-right: 1px solid black;\n  border-bottom: 1px solid black;\n  border-top: 0;\n}\n\n.input-view-container {\n  margin-top: 20px;\n  margin-left: auto;\n  margin-right: auto;\n  margin-bottom: 15px;\n}\n\n#text-input {\n  resize: none;\n  width: 322px;\n  text-align: right;\n  height: 40px;\n  font-size: 28px;\n}\n\n.calculator-buttons-container {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr 1fr;\n  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;\n  column-gap: 8px;\n  row-gap: 8px;\n  margin-top: 8px;\n  width: 330px;\n}\n\n.calculator-button {\n  height: 42px;\n}\n\n#btn-equals {\n  grid-column-start: auto;\n  grid-column-end: span 2;\n}\n\n#btn-zero {\n  grid-column-start: auto;\n  grid-column-end: span 2;\n}", "",{"version":3,"sources":["webpack://./src/client/styles.css"],"names":[],"mappings":"AAAA;EACE,SAAS;EACT,UAAU;EACV,SAAS;EACT,eAAe;EACf,aAAa;EACb,wBAAwB;AAC1B;;AAEA;EACE,cAAc;EACd,yCAAyC;AAC3C;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,sBAAsB;EACtB,YAAY;EACZ,WAAW;AACb;;AAEA;EACE,YAAY;EACZ,YAAY;EACZ,aAAa;EACb,sBAAsB;EACtB,uBAAuB;EACvB,kBAAkB;AACpB;;AAEA;EACE,iBAAiB;EACjB,kBAAkB;EAClB,gBAAgB;AAClB;;AAEA;EACE,YAAY;EACZ,aAAa;EACb,YAAY;EACZ,iBAAiB;AACnB;;AAEA;EACE,cAAc;EACd,iBAAiB;EACjB,gBAAgB;EAChB,8BAA8B;EAC9B,4BAA4B;EAC5B,6BAA6B;EAC7B,8BAA8B;EAC9B,aAAa;AACf;;AAEA;EACE,gBAAgB;EAChB,iBAAiB;EACjB,kBAAkB;EAClB,mBAAmB;AACrB;;AAEA;EACE,YAAY;EACZ,YAAY;EACZ,iBAAiB;EACjB,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,sCAAsC;EACtC,uCAAuC;EACvC,eAAe;EACf,YAAY;EACZ,eAAe;EACf,YAAY;AACd;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,uBAAuB;EACvB,uBAAuB;AACzB;;AAEA;EACE,uBAAuB;EACvB,uBAAuB;AACzB","sourcesContent":["html body div span input textarea nav {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\nbody {\n  line-height: 1;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\nol, ul {\n  list-style: none;\n}\n\n.app-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  height: 98vh;\n  width: 98vw;\n}\n\n.content-container {\n  width: 360px;\n  height: auto;\n  display: flex;\n  flex-direction: column;\n  border: 1px solid black;\n  border-radius: 4px;\n}\n\n.result-view-container {\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 15px;\n}\n\n#result-view {\n  resize: none;\n  height: 200px;\n  width: 324px;\n  text-align: right;\n}\n\n.btn-clear-history {\n  display: block;\n  margin-left: auto;\n  margin-top: -4px;\n  border-radius: 0px 0px 4px 4px;\n  border-left: 1px solid black;\n  border-right: 1px solid black;\n  border-bottom: 1px solid black;\n  border-top: 0;\n}\n\n.input-view-container {\n  margin-top: 20px;\n  margin-left: auto;\n  margin-right: auto;\n  margin-bottom: 15px;\n}\n\n#text-input {\n  resize: none;\n  width: 322px;\n  text-align: right;\n  height: 40px;\n  font-size: 28px;\n}\n\n.calculator-buttons-container {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr 1fr;\n  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;\n  column-gap: 8px;\n  row-gap: 8px;\n  margin-top: 8px;\n  width: 330px;\n}\n\n.calculator-button {\n  height: 42px;\n}\n\n#btn-equals {\n  grid-column-start: auto;\n  grid-column-end: span 2;\n}\n\n#btn-zero {\n  grid-column-start: auto;\n  grid-column-end: span 2;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
