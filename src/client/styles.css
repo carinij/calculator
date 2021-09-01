@@ -85,14 +85,5 @@ ol, ul {
 
 .calculator-button {
   height: 42px;
-}
-
-#btn-equals {
-  grid-column-start: auto;
-  grid-column-end: span 2;
-}
-
-#btn-zero {
-  grid-column-start: auto;
-  grid-column-end: span 2;
+  font-size: 18px;
 }
