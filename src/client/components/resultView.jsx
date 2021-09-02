@@ -9,8 +9,8 @@ export default function ResultView(props) {
 
   return (
     <div className="result-view-container">
-      <textarea id="result-view" name="result-view" placeholder="Results will be displayed here" value={props.resultDisplay} readOnly onClick={clickHandler}></textarea>
-      <button className="btn-clear-history">Clear History</button>
+      <textarea id="result-view" name="result-view" placeholder="Results will be displayed here" value={props.resultDisplay} readOnly></textarea>
+      <button className="btn-clear-history" onClick={clickHandler}>Clear History</button>
     </div>
   )
 }
