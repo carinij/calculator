@@ -35,6 +35,12 @@ function validateFormula(str) {
     return {outcome: false, text: 'Please ensure the start and end are valid.'};
   }
 
+  // Matches if there are two '.' in a row or two '.' in a number
+  const decimalPointRegex = /\.[\d]*\./
+  if (decimalPointRegex.test(newStr)) {
+    return {outcome: false, text: 'Please make sure each number has no more than one decimal point, and two decimal points are never adjacent.'};
+  }
+
   // Checks to make sure all ) are preceded by (, all ( are followed by ), and all parentheses
   // enclose something, and no set of parentheses neighbor numbers on both sides
   const checkParens = (inputStr) => {
