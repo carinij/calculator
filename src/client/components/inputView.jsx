@@ -30,10 +30,6 @@ export default function InputView(props) {
     }
   }
 
-  useEffect(()=> {
-    console.log(inputDisplay);
-  })
-
   return (
     <div className="input-view-container">
       <TextInput inputDisplay={inputDisplay} setInputDisplay={setInputDisplay} setResultDisplay={props.setResultDisplay}/>
