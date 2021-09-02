@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+const validateFormula = require('./validateFormula.js')
+
 const host = 'localhost';
 const port = '3000';
 
@@ -10,8 +12,13 @@ app.get('/calc', (req, res) => {
   if (req.query.formula.length > 1024) {
     res.status(400).send("Error: Query length exceeds 1024 characters.");
   }
-  console.log(req.query.formula);
-  res.send({answer: "Probably it's 5?"});
+  const val = validateFormula(req.query.formula);
+  if (val.outcome) {
+    res.send({answer: "Probably it's 5?"});
+  } else {
+    res.status(400).send({answer: val.text });
+  }
+
 });
 
 app.listen(port, () => {
