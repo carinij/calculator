@@ -1,13 +1,16 @@
-const { getNumber, getSubIndex, getDecimalPlaces,  insert, replace } = require('./helpers');
+const { getNumber, getSubIndex, getDecimalPlaces,  insert, replaceGroup } = require('./helpers');
 
 function calc (inputString) {
 
   function evaluate(str) {
     let newStr = str;
 
+    // If we're sending an error message (i.e. divide by 0 or something else that
+    // made it through validation but is still causing an issue), pass it through
     if (newStr.slice(0, 5) === "Error") {
       return newStr;
     }
+
     // Matches if the entire string contains numbers and/or periods (only one
     // should be possible) and optionally a '-' to start
     // In other words: matches if we're done
@@ -50,6 +53,8 @@ function calc (inputString) {
         return evaluate(newStr);
       }
     }
+
+    return "Input string passed validation but could not be evaluated.";
   }
 
   function resolveParens(str, initialIndex) {
@@ -73,7 +78,7 @@ function calc (inputString) {
         }
         // Remove the parenthetical (including the parentheses themselves) and replace it with
         // the result of evaluating the contents of the parenthetical (sans parentheses)
-        newStr = replace(newStr, openParensIndex + modifier, i + modifier, evaluate(newStr.slice(openParensIndex + 1 + modifier, i + modifier)));
+        newStr = replaceGroup(newStr, openParensIndex + modifier, i + modifier, evaluate(newStr.slice(openParensIndex + 1 + modifier, i + modifier)));
         return newStr;
       }
     }
@@ -121,10 +126,11 @@ function calc (inputString) {
       return "Error: Handling very large numbers with scientific notation is a premium feature."
     }
     console.log("applyOperator newStr: ", newStr);
-    return replace(newStr, firstOperand.termIndex, secondOperand.termIndex, result);
+    return replaceGroup(newStr, firstOperand.termIndex, secondOperand.termIndex, result);
   }
 
-  return evaluate(inputString);
+  // Actually run the thing! But remove whitespace and convert '--' to '+' first.
+  return evaluate(inputString.replace(/\s/g, '').replace(/\-\-/, '+'));
 
 }
 
