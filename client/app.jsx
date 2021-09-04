@@ -25,7 +25,8 @@ export default function Calculator () {
       let query = mathString.replace(/\s/g, "");
       // Change / and + to their ASCII hex codes
       query = encodeURIComponent(query);
-      fetch(`http://${host}:${port}/calc?mathString=${query}`)
+      console.log(query);
+      fetch(`http://${host}:${port}/calc?expression=${query}`)
       .then(response => response.json())
       .then(data => updateResultDisplay(data.answer));
     } else {
