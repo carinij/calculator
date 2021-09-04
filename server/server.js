@@ -10,10 +10,10 @@ const port = '3000';
 app.use(express.static('public'));
 
 app.get('/calc', (req, res) => {
-  if (!req.query.mathString) {
-    res.status(400).send("Error: please include ?mathString= and then a string to evaluate.");
+  if (!req.query.expression) {
+    res.status(400).send("Error: please include ?expression= and then a string to evaluate.");
   } else {
-    let mathString = req.query.mathString;
+    let mathString = req.query.expression;
     if (mathString.length > 1024) {
       res.status(400).send("Error: Query length exceeds 1024 characters.");
     }
