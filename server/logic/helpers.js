@@ -68,7 +68,7 @@ function insert(str, index, newBit) {
 // Returns a string with the new value replacing whatever used to be between
 // startIndex and endIndex (inclusive--including writing over whatever is at
 // startIndex and endIndex)
-function replace(str, startIndex, endIndex, newBit) {
+function replaceGroup(str, startIndex, endIndex, newBit) {
   // console.log("replace: ");
   // console.log("str: " + str);
   // console.log("startIndex: " + startIndex);
@@ -83,5 +83,5 @@ module.exports = {
   getSubIndex,
   getDecimalPlaces,
   insert,
-  replace
+  replaceGroup
 }
