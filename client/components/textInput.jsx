@@ -9,7 +9,7 @@ export default function TextInput(props) {
 
   return (
     <div>
-      <input type="text" id="text-input" name="text-input" placeholder="Enter formula" value={props.inputDisplay} onChange={handleChange}/>
+      <input type="text" id="text-input" name="text-input" placeholder="Enter expression" value={props.inputDisplay} onChange={handleChange}/>
     </div>
   )
 }

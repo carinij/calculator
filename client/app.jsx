@@ -9,7 +9,7 @@ import InputView from './components/inputView.jsx';
 // theoretical server resources) and also at the server (so we could theoretically use the API
 // separately from the client.) And I've decided that coming up with a more elegant solution to
 // the classic "es6 and commonJS modules don't get along" problem is out of scope.
-const validateFormula = require('../server/validateFormula.js');
+const validate = require('../server/logic/validate.js');
 
 const host = "localhost";
 const port = "3000";
@@ -18,14 +18,14 @@ export default function Calculator () {
 
   const [resultDisplay, setResultDisplay] = useState("");
 
-  const processFormula = (formula) => {
-    const val = validateFormula(formula);
+  const processMathString = (mathString) => {
+    const val = validate(mathString);
     if (val.outcome) {
       // Get rid of all whitespace
-      let query = formula.replace(/\s/g, "");
+      let query = mathString.replace(/\s/g, "");
       // Change / and + to their ASCII hex codes
       query = encodeURIComponent(query);
-      fetch(`http://${host}:${port}/calc?formula=${query}`)
+      fetch(`http://${host}:${port}/calc?mathString=${query}`)
       .then(response => response.json())
       .then(data => updateResultDisplay(data.answer));
     } else {
@@ -42,7 +42,7 @@ export default function Calculator () {
     <div className="app-container">
       <div className="content-container">
         <ResultView resultDisplay={resultDisplay} setResultDisplay={setResultDisplay}/>
-        <InputView processFormula={processFormula} setResultDisplay={setResultDisplay}/>
+        <InputView processMathString={processMathString} setResultDisplay={setResultDisplay}/>
       </div>
     </div>
   )

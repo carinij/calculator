@@ -1,11 +1,11 @@
-function validateFormula(str) {
+function validate(str) {
 
   // Get rid of white spaces
   const newStr = str.replace(/\s/g, "");
 
   // Usually servers balk at query strings greater than 1024; that seems like a reasonable limit to set.
   // We'll need to encode / and + with three-character hex ASCII codes, so in theory our query could be
-  // just under twice as long as the formula (formulas can't start with an operator other than - and can't
+  // just under twice as long as the input (input can't start with an operator other than - and can't
   // end with any operators). But we'll need a little more space for a property name etc. Perhaps slightly
   // awkward that we're stripping the whitespace first, but I don't expect it to come up too often.
   if (newStr.length > 500) {
@@ -95,4 +95,4 @@ function validateFormula(str) {
   return {outcome: true};
 }
 
-module.exports = validateFormula;
+module.exports = validate;

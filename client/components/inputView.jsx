@@ -22,7 +22,7 @@ export default function InputView(props) {
         setInputDisplay(currentInput);
         break;
       case "=":
-        props.processFormula(inputDisplay);
+        props.processMathString(inputDisplay);
         break;
       default:
         currentInput = inputDisplay + target;

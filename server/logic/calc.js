@@ -1,8 +1,13 @@
+const { getNumber, getSubIndex, getDecimalPlaces,  insert, replace } = require('./helpers');
+
 function calc (inputString) {
 
   function evaluate(str) {
     let newStr = str;
 
+    if (newStr.slice(0, 5) === "Error") {
+      return newStr;
+    }
     // Matches if the entire string contains numbers and/or periods (only one
     // should be possible) and optionally a '-' to start
     // In other words: matches if we're done
@@ -16,7 +21,7 @@ function calc (inputString) {
     const parensIndex = newStr.indexOf('(');
     // If there's a '(' in there somewhere, sort that out
     if (parensIndex !== -1) {
-      console.log("Evaluating parens.");
+      // console.log("Evaluating parens.");
       newStr = resolveParens(newStr, parensIndex);
       return evaluate(newStr);
     }
@@ -29,6 +34,8 @@ function calc (inputString) {
     const addSub = decideOperators(newStr.indexOf('+'), getSubIndex(newStr))
     if (addSub) {return addSub};
 
+    // Whichever of the two operator indexes exists, or if both exist, whichever
+    // is first (readying from the left), call applyOperator there
     function decideOperators(opIndex1, opIndex2) {
       if (opIndex1 !== -1) {
         if (opIndex2 !== -1) {
@@ -76,98 +83,48 @@ function calc (inputString) {
     let newStr = str;
     const firstOperand = getNumber(newStr, index, -1);
     const secondOperand = getNumber(newStr, index, 1);
-    const firstVal = parseInt(firstOperand.value);
-    const secondVal = parseInt(secondOperand.value);
+    console.log("firstOperand: ", firstOperand);
+    console.log("secondOperand: ", secondOperand);
+
+    const firstMod = 10 * getDecimalPlaces(firstOperand.value) || 1;
+    const secondMod = 10 * getDecimalPlaces(secondOperand.value) || 1;
+    console.log("firstMod: ", firstMod);
+    console.log("secondMod: ", secondMod);
+
+    const modifier = firstMod > secondMod ? firstMod : secondMod;
+    console.log("modifier: ", modifier);
+
+    const firstVal = parseFloat(firstOperand.value) * modifier;
+    console.log("firstVal", firstVal);
+    const secondVal = parseFloat(secondOperand.value) * modifier;
+    console.log("secondVal", secondVal);
+
     let result;
     switch (newStr[index]) {
       case '*':
-        result = firstVal * secondVal;
+        result = (firstVal * secondVal) / (modifier * modifier);
         break;
       case '/':
-        result = firstVal / secondVal;
+        result = (firstVal / secondVal);
         break;
       case '+':
-        result = firstVal + secondVal;
+        result = (firstVal + secondVal) / modifier;
         break;
       case '-':
-        result = firstVal - secondVal;
+        result = (firstVal - secondVal) / modifier;
         break;
       default:
         console.log("Default case reached on applyOperator.");
+    }
+    if (result === Infinity) {return "Error: Division by 0"};
+    if (result.toString().indexOf('e') >= 0) {
+      return "Error: Handling very large numbers with scientific notation is a premium feature."
     }
     console.log("applyOperator newStr: ", newStr);
     return replace(newStr, firstOperand.termIndex, secondOperand.termIndex, result);
   }
 
-  function getNumber(str, index, direction) {
-    let resultArray = [];
-    let operandIndex = index;
-    if (direction === -1) {
-      for (let i = index - 1; i >= 0; i--) {
-        // If the char to the left is a digit or '.', add it to our results and continue
-        // (improper decimal points won't make it past the earlier validation step)
-        if(/[\d\.]/.test(str[i])) {
-          resultArray.unshift(str[i]);
-          operandIndex = i;
-          // Handle the corner case of a negative number to the left of ()
-          // (which we'll want to multiply)
-        } else if (i <= index - 2 && /\-/.test(str[i]) && !/\d/.test(str[i-1])) {
-          resultArray.unshift(str[i]);
-          operandIndex = i;
-          break;
-          // As soon as we find a non-digit, stop looking
-        } else {
-          break;
-        }
-      }
-    } else {
-      for (let i = index + 1; i < str.length; i++) {
-        // If the first character after the operator is a '-' and the next one is a digit,
-        // add it to our result and continue
-        if (i === index + 1 && /\-\d/.test(str[i] + str[i+1])) {
-          resultArray.push(str[i]);
-          operandIndex = i;
-        // If the char to the right is a digit or '.', add it to our result and continue
-        } else if(/[\d\.]/.test(str[i])) {
-          resultArray.push(str[i]);
-          operandIndex = i;
-        } else {
-          break;
-        }
-      }
-    }
-    console.log({value: resultArray.join(''), termIndex: operandIndex});
-    return ({value: resultArray.join(''), termIndex: operandIndex});
-  }
-
-  // If the '-' we've found is between two digits, it means the subtraction operator and not
-  // that something is negative; return its index
-  function getSubIndex(str) {
-    for (let i = 1; i < str.length - 1; i++) {
-      console.log(str.slice(i-1, i+2));
-      if (/\d\-\d/.test(str.slice(i-1, i+2))) {
-        return i;
-      }
-    }
-    return -1;
-  }
-
-  function insert(str, index, newBit) {
-    return str.slice(0, index) + newBit + str.slice(index);
-  }
-
-  function replace(str, startIndex, endIndex, newBit) {
-    console.log("replace: ");
-    console.log("str: " + str);
-    console.log("startIndex: " + startIndex);
-    console.log("endIndex: " + endIndex);
-    console.log("newBit: " + newBit);
-    console.log("result: " + str.slice(0, startIndex) + newBit + str.slice(endIndex + 1));
-    return str.slice(0, startIndex) + newBit + str.slice(endIndex + 1);
-  }
-
-  const result = evaluate(inputString);
-  return result;
+  return evaluate(inputString);
 
 }
 
