@@ -1,7 +1,7 @@
 const valF = require('../server/logic/validate.js');
 
 test('accepts valid input strings', () => {
-  let inputArray = [
+  const inputArray = [
     '3+4',
     '5-2',
     '5*8',
@@ -11,12 +11,34 @@ test('accepts valid input strings', () => {
     '(2+3)',
     '34(2*89456)',
     '(((34*9)3+3(33/247))3-879)+12.6/255'
-  ]
+  ];
   inputArray.map((item) => {
     expect(valF(item).outcome).toBe(true);
-  })
+  });
 })
 
+test('accepts valid example strings from spec', () => {
+  const inputArray = [
+    '1 + 2',
+    '4*5/2',
+    '-5+-8--11*2',
+    '-.32         /.5',
+    '(4-2)*3.5',
+  ];
+  inputArray.map((item) => {
+    expect(valF(item).outcome).toBe(true);
+  });
+})
+
+test('rejects invalid example strings from spec', () => {
+  const inputArray = [
+    '2+-+-4',
+    '19 + cinnamon'
+  ];
+  inputArray.map((item) => {
+    expect(valF(item).outcome).toBe(false);
+  });
+})
 
 test('rejects very long input strings', () => {
   let input = '';
@@ -27,27 +49,84 @@ test('rejects very long input strings', () => {
 })
 
 test('does not allow more than 2 operators in series', () => {
-  let input = '6+--8';
+  const input = '6+--8';
   expect(valF(input).outcome).toBe(false);
 })
 
 test('does not allow 2 operators when the second is not "-"', () => {
-  let input = '3++4';
+  const input = '3++4';
   expect(valF(input).outcome).toBe(false);
 })
 
 test('does allow 2 operators when the second is "-"', () => {
-  let input = '3+-1';
+  const input = '3+-1';
   expect(valF(input).outcome).toBe(true);
 })
 
 test('does not allow letters as input', () => {
-  let input = '3x+1';
+  const input = '3x+1';
   expect(valF(input).outcome).toBe(false);
 })
 
 test('does not allow starting string with an operator other than "-"', () => {
-  let input ='*48+2';
-  expect(valF(input).outcome).toBe(false);
-}
+  const inputArray = [
+    '+1 + 2',
+    '*4*5/2',
+    '/5+-8--11*2',
+    '*-.32         /.5/',
+    '+(4-2)*3.5',
+  ];
+  inputArray.map((item) => {
+    expect(valF(item).outcome).toBe(false);
+  });
+})
 
+test('does not allow ending string with an operator', () => {
+  const inputArray = [
+    '1 + 2-',
+    '4*5/2+',
+    '-5+-8--11*2*',
+    '-.32         /.5/',
+    '(4-2)*3.5-',
+  ];
+  inputArray.map((item) => {
+    expect(valF(item).outcome).toBe(false);
+  });
+})
+
+test('does not allow multiple decimal points in a number', () => {
+  const input = '3.456.52';
+  expect(valF(input).outcome).toBe(false);
+})
+
+test('does not allow two or more decimal points in a row', () => {
+  const input = '3..52';
+  expect(valF(input).outcome).toBe(false);
+})
+
+test('allows valid parentheses usage', () => {
+  const inputArray = [
+    '(2+3)',
+    '(2)',
+    '3(2)',
+    '((2+3)3 + 3*3) / 2(2*4)',
+    '(((((230-43)+3(234))/2)+2)*9000)'
+  ];
+  inputArray.map((item) => {
+    expect(valF(item).outcome).toBe(true);
+  })
+})
+
+test('rejects invalid parentheses usage', () => {
+  const inputArray = [
+    ')(2+3)',
+    '2)3',
+    '3(2)3',
+    '((2+3)3 + 3*3 / 2(2*4)',
+    '(((((230-43)+3(234)/2)+2)*9000)',
+    '23()+3'
+  ];
+  inputArray.map((item) => {
+    expect(valF(item).outcome).toBe(false);
+  })
+})
