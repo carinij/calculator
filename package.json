@@ -8,7 +8,9 @@
   "scripts": {
     "build-dev": "webpack --config webpack.dev.js",
     "build-prod": "webpack --config webpack.prod.js",
-    "serve": "nodemon ./server/server-start.js",
+    "serve-dev": "nodemon ./server/server-start.js",
+    "serve-prod": "node ./server/server-start.js",
+    "ec2": "ssh -i ./calc.pem ubuntu@ec2-54-193-244-117.us-west-1.compute.amazonaws.com",
     "test": "jest"
   },
   "repository": {
