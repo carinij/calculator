@@ -1,4 +1,5 @@
 expressStaticGzip = require("express-static-gzip");
+const cors = require('cors');
 
 const express = require("express");
 const app = express();
@@ -18,6 +19,10 @@ app.use(
     },
   })
 );
+
+app.use(cors({
+  origin: 'http://54.193.244.117';
+}));
 
 app.get("/calc", (req, res) => {
   if (!req.query.expression) {
