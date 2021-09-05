@@ -5,7 +5,7 @@
 ## Overview
 
 ### Background
-A simple calculator. Supports +, -, \*, /, and (). To create an expression for evaluation, please press the calculator buttons or click in the text box labeled "Expression" and start typing. Click on "=" to see the result.
+A straightforward calculator. Supports +, -, \*, /, and (). To create an expression for evaluation, please press the calculator buttons or click in the text box labeled "Expression" and start typing. Click on "=" to see the result.
 
 For your convenience, the calculator saves a list of your recent results. It also has three selectable modes for when you click on "=" and it successfully evaluates your expression:
 * In "Clear" mode, the calculator will delete the contents of the input text box.
