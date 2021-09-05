@@ -25,9 +25,9 @@ The calculations are done on the server and sent back to the client in your brow
 
 ### Highlights
 
-* Handles deeply nested ()
-* Is more precise than Javascript's default for arithmetic with floating points (e.g. this calculator evaluates 0.2 + 0.1 as "0.3" rather than "0.30000000000000004")
-* Arguably at least somewhat stylish
+* Handles deeply nested ().
+* Is more precise than Javascript's default for arithmetic with floating points (e.g. this calculator evaluates 0.2 + 0.1 as "0.3" rather than "0.30000000000000004").
+* Arguably at least somewhat stylish.
 
 ## Installation and Start
 
@@ -35,14 +35,14 @@ The calculations are done on the server and sent back to the client in your brow
 2. From root directory: `npm install`.
 3. Build the client with `npm run build-prod` (or `npm run build-dev` for watch mode, source mapping, and various development features).
 4. Start the server with `npm run serve-prod` (or `npm run serve-dev` for watch mode via nodemon).
-5. Navigate to localhost:3000
+5. Navigate to http://localhost:3000.
 6. To install non-locally, before building change the host and port number constants to match your setup in these files: `./client/app.jsx`, `./server/server.js`, `./server/server-start.js`
 
 ## API
 
 The API just has one route: `/calc`, which takes a query: `/calc?expression=` and then a string representing the expression to evaluate.
 
-This string must be encoded for urls--see https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding
+This string must be encoded for urls--see https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding.
 
 Responses are in JSON format as follows: `{"answer": result}`
 
