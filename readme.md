@@ -1,6 +1,6 @@
 # Calculator
 
-![Calculator in action](/readme_assets/Calculator video.mp4)
+![Calculator in action](/readme_assets/calculator_video.mp4)
 
 ## Overview
 
