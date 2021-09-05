@@ -1,17 +1,31 @@
-const express = require('express');
+expressStaticGzip = require("express-static-gzip");
+
+const express = require("express");
 const app = express();
 
-const validate = require('./logic/validate.js');
-const calc = require('./logic/calc.js');
+const validate = require("./logic/validate.js");
+const calc = require("./logic/calc.js");
 
-const host = 'localhost';
-const port = '3000';
+const host = "localhost";
+const port = "3000";
 
-app.use(express.static('public'));
+app.use(
+  expressStaticGzip("public", {
+    enableBrotli: true,
+    orderPreference: ["br", "gz"],
+    setHeaders: function (res, path) {
+      res.setHeader("Cache-Control", "public, max-age=31536000");
+    },
+  })
+);
 
-app.get('/calc', (req, res) => {
+app.get("/calc", (req, res) => {
   if (!req.query.expression) {
-    res.status(400).send("Error: please include ?expression= and then a string to evaluate.");
+    res
+      .status(400)
+      .send(
+        "Error: please include ?expression= and then a string to evaluate."
+      );
   } else {
     let mathString = req.query.expression;
     if (mathString.length > 1024) {
@@ -20,10 +34,9 @@ app.get('/calc', (req, res) => {
     const val = validate(mathString);
     if (val.outcome) {
       const answer = calc(mathString);
-      console.log(answer);
-      res.send({answer: answer});
+      res.send({ answer: answer });
     } else {
-      res.status(400).send({answer: val.text });
+      res.status(400).send({ answer: val.text });
     }
   }
 });

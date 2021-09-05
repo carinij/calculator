@@ -1,9 +1,8 @@
-import React from 'react';
-import TextInput from './textInput.jsx';
-import CalculatorButtons from './calculatorButtons.jsx';
+import React from "react";
+import TextInput from "./textInput.jsx";
+import CalculatorButtons from "./calculatorButtons.jsx";
 
 export default function InputView(props) {
-
   const inputDisplay = props.inputDisplay;
   const setInputDisplay = props.setInputDisplay;
 
@@ -19,7 +18,7 @@ export default function InputView(props) {
         setInputDisplay("");
         break;
       case "del":
-        currentInput = inputDisplay.substring(0, inputDisplay.length-1);
+        currentInput = inputDisplay.substring(0, inputDisplay.length - 1);
         setInputDisplay(currentInput);
         break;
       case "=":
@@ -29,7 +28,7 @@ export default function InputView(props) {
         currentInput = inputDisplay + target;
         setInputDisplay(currentInput);
     }
-  }
+  };
 
   return (
     <div className="input-view-container">
@@ -40,7 +39,7 @@ export default function InputView(props) {
         equalsMode={props.equalsMode}
         setEqualsMode={props.setEqualsMode}
       />
-      <CalculatorButtons clickHandler={clickHandler}/>
+      <CalculatorButtons clickHandler={clickHandler} />
     </div>
-  )
+  );
 }
