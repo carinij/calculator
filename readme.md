@@ -1,5 +1,7 @@
 # Calculator
 
+![Calculator in action](/readme_assets/Calculator video.mp4)
+
 ## Overview
 
 ### Background
