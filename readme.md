@@ -36,7 +36,7 @@ The calculations are done on the server and sent back to the client in your brow
 3. Build the client with `npm run build-prod` (or `npm run build-dev` for watch mode, source mapping, and various development features).
 4. Start the server with `npm run serve-prod` (or `npm run serve-dev` for watch mode via nodemon).
 5. Navigate to localhost:3000
-6. To install non-locally, before building change the host and port number constants in: `./client/app.jsx`, `./server/server.js`, `./server/server-start.js`
+6. To install non-locally, before building change the host and port number constants to match your setup in these files: `./client/app.jsx`, `./server/server.js`, `./server/server-start.js`
 
 ## API
 
