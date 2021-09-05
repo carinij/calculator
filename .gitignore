@@ -1,3 +1,4 @@
 node_modules
 public/calculator.js
 public/calculator.js.map
+.env
