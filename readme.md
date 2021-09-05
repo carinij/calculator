@@ -1,6 +1,6 @@
 # Calculator
 
-![Calculator in action](/readme_assets/calculator_video.mp4)
+![Calculator, full field, clear mode](/readme_assets/calculator_image_1.png)
 
 ## Overview
 
