@@ -17,6 +17,8 @@ const port = "3000";
 export default function Calculator () {
 
   const [resultDisplay, setResultDisplay] = useState("");
+  const [inputDisplay, setInputDisplay] = useState("");
+  const [equalsMode, setEqualsMode] = useState("clear");
 
   const processMathString = (mathString) => {
     const val = validate(mathString);
@@ -28,7 +30,21 @@ export default function Calculator () {
       console.log(query);
       fetch(`http://${host}:${port}/calc?expression=${query}`)
       .then(response => response.json())
-      .then(data => updateResultDisplay(data.answer));
+      .then(data => {
+        switch (equalsMode) {
+          case 'clear':
+            setInputDisplay("");
+            break;
+          case 'replace':
+            setInputDisplay(data.answer);
+          case 'keep':
+            break;
+          default:
+            console.log("Default case reached for switch (equalsMode).");
+            break;
+        }
+        updateResultDisplay(data.answer);
+      });
     } else {
       updateResultDisplay(val.text);
     }
@@ -43,7 +59,14 @@ export default function Calculator () {
     <div className="app-container">
       <div className="content-container">
         <ResultView resultDisplay={resultDisplay} setResultDisplay={setResultDisplay}/>
-        <InputView processMathString={processMathString} setResultDisplay={setResultDisplay}/>
+        <InputView
+          processMathString={processMathString}
+          setResultDisplay={setResultDisplay}
+          inputDisplay={inputDisplay}
+          setInputDisplay={setInputDisplay}
+          equalsMode={equalsMode}
+          setEqualsMode={setEqualsMode}
+        />
       </div>
     </div>
   )
