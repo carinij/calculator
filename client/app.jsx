@@ -3,6 +3,7 @@ import "./styles.css";
 
 import ResultView from "./components/resultView.jsx";
 import InputView from "./components/inputView.jsx";
+import ColorChoices from "./components/colorChoices.jsx";
 
 // I don't love mixing require and import statements like this, or indeed sharing files between the
 // client and the server at all. But I like validating at the client (to save network calls and
@@ -18,6 +19,7 @@ export default function Calculator() {
   const [resultDisplay, setResultDisplay] = useState("");
   const [inputDisplay, setInputDisplay] = useState("");
   const [equalsMode, setEqualsMode] = useState("clear");
+  const [colorMode, setColorMode] = useState("sky");
 
   const processMathString = (mathString) => {
     const val = validate(mathString);
@@ -53,21 +55,31 @@ export default function Calculator() {
     setResultDisplay(currentContent);
   };
 
+  const colorClickHandler = (e) => {
+    e.preventDefault();
+    setColorMode(e.target.className.split(" ")[1]);
+  };
+
+  const appContainerClasses = "app-container " + colorMode;
+
   return (
-    <div className="app-container">
-      <div className="content-container">
-        <ResultView
-          resultDisplay={resultDisplay}
-          setResultDisplay={setResultDisplay}
-        />
-        <InputView
-          processMathString={processMathString}
-          setResultDisplay={setResultDisplay}
-          inputDisplay={inputDisplay}
-          setInputDisplay={setInputDisplay}
-          equalsMode={equalsMode}
-          setEqualsMode={setEqualsMode}
-        />
+    <div>
+      <ColorChoices colorClickHandler={colorClickHandler} />
+      <div className={appContainerClasses}>
+        <div className="content-container">
+          <ResultView
+            resultDisplay={resultDisplay}
+            setResultDisplay={setResultDisplay}
+          />
+          <InputView
+            processMathString={processMathString}
+            setResultDisplay={setResultDisplay}
+            inputDisplay={inputDisplay}
+            setInputDisplay={setInputDisplay}
+            equalsMode={equalsMode}
+            setEqualsMode={setEqualsMode}
+          />
+        </div>
       </div>
     </div>
   );
