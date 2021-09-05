@@ -21,7 +21,7 @@ app.use(
 );
 
 app.use(cors({
-  origin: 'http://54.193.244.117';
+  origin: 'http://54.193.244.117'
 }));
 
 app.get("/calc", (req, res) => {
