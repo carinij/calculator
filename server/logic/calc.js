@@ -91,8 +91,8 @@ function calc (inputString) {
     console.log("firstOperand: ", firstOperand);
     console.log("secondOperand: ", secondOperand);
 
-    const firstMod = 10 * getDecimalPlaces(firstOperand.value) || 1;
-    const secondMod = 10 * getDecimalPlaces(secondOperand.value) || 1;
+    const firstMod = 10 ** getDecimalPlaces(firstOperand.value) || 1;
+    const secondMod = 10 ** getDecimalPlaces(secondOperand.value) || 1;
     console.log("firstMod: ", firstMod);
     console.log("secondMod: ", secondMod);
 
