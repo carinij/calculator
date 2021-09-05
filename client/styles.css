@@ -10,6 +10,8 @@ html body div span input textarea nav {
 body {
   line-height: 1;
   font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(to right, rgb(0, 121, 145), rgb(120, 255, 214));
+
 }
 
 ol, ul {
@@ -30,8 +32,14 @@ ol, ul {
   height: auto;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
-  border-radius: 4px;
+  /* border: 1px solid white; */
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+  -webkit-box-shadow:inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);;
+  -moz-box-shadow:inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);;
+  box-shadow:inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);;
 }
 
 .result-view-container {
@@ -45,17 +53,35 @@ ol, ul {
   height: 200px;
   width: 324px;
   text-align: right;
+  font-size: 24px;
+  outline: 0;
+  display: block;
 }
 
-.btn-clear-history {
-  display: block;
-  margin-left: auto;
-  margin-top: -4px;
+.clear-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-right-tab {
   border-radius: 0px 0px 4px 4px;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
   border-bottom: 1px solid black;
+  border-right: 0;
+  border-left: 1px solid black;
   border-top: 0;
+  filter: brightness(0.95);
+}
+
+.btn-right-tab:last-child {
+  border-right: 1px solid black;
+}
+
+.btn-right-tab:hover, .btn-selected {
+  filter: brightness(0.85);
+}
+
+.btn-right-tab:active {
+  filter: brightness(1);
 }
 
 .input-view-container {
@@ -70,7 +96,19 @@ ol, ul {
   width: 322px;
   text-align: right;
   height: 40px;
-  font-size: 28px;
+  font-size: 24px;
+}
+
+.tab-menu-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.text-input-button-label {
+  font-size: 13.3333px;
+  margin-right: 4px;
+  align-self: center;
 }
 
 .calculator-buttons-container {
@@ -86,4 +124,22 @@ ol, ul {
 .calculator-button {
   height: 42px;
   font-size: 18px;
+  border-radius: 4px;
+  border-top: 0;
+  border-right: 0;
+  border-left: 1px solid white;
+  border-bottom: 1px solid white;
+  filter: brightness(0.95);
+  background-color: rgba(255, 255, 255, 0.75);
+  /* -webkit-box-shadow:inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);; */
+  /* -moz-box-shadow:inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);; */
+  box-shadow:inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), 0 3px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.calculator-button:hover{
+  filter: brightness(0.85);
+}
+
+.calculator-button:active {
+  filter: brightness(1);
 }
