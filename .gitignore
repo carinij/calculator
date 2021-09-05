@@ -3,3 +3,5 @@ public/calculator.js
 public/calculator.js.br
 public/calculator.js.gz
 public/calculator.js.map
+public/calculator.js.LICENSE.txt
+*.pem
