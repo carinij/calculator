@@ -58,13 +58,13 @@ export default function Calculator() {
   const colorClickHandler = (e) => {
     e.preventDefault();
     setColorMode(e.target.className.split(" ")[1]);
-  }
+  };
 
   const appContainerClasses = "app-container " + colorMode;
 
   return (
     <div>
-      <ColorChoices colorClickHandler={colorClickHandler}/>
+      <ColorChoices colorClickHandler={colorClickHandler} />
       <div className={appContainerClasses}>
         <div className="content-container">
           <ResultView

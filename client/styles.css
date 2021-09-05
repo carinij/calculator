@@ -1,4 +1,10 @@
-html, body, div, span, input, textarea, nav {
+html,
+body,
+div,
+span,
+input,
+textarea,
+nav {
   margin: 0;
   padding: 0;
   font-size: 100%;
@@ -46,11 +52,21 @@ ul {
 }
 
 .dark-blues {
-  background: linear-gradient(to right, rgb(15, 32, 39), rgb(32, 58, 67), rgb(44, 83, 100));
+  background: linear-gradient(
+    to right,
+    rgb(15, 32, 39),
+    rgb(32, 58, 67),
+    rgb(44, 83, 100)
+  );
 }
 
 .sky {
-  background: linear-gradient(to right, rgb(41, 128, 185), rgb(109, 213, 250), rgb(255, 255, 255));
+  background: linear-gradient(
+    to right,
+    rgb(41, 128, 185),
+    rgb(109, 213, 250),
+    rgb(255, 255, 255)
+  );
 }
 
 .teals {
