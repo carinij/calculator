@@ -63,9 +63,9 @@ export default function Calculator() {
   const appContainerClasses = "app-container " + colorMode;
 
   return (
-    <div>
+    <div className={appContainerClasses}>
       <ColorChoices colorClickHandler={colorClickHandler} />
-      <div className={appContainerClasses}>
+      <div className="calculator-container">
         <div className="content-container">
           <ResultView
             resultDisplay={resultDisplay}
@@ -81,6 +81,7 @@ export default function Calculator() {
           />
         </div>
       </div>
+      <div className="spacer"></div>
     </div>
   );
 }
